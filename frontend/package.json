@@ -1,5 +1,4 @@
 {
-  "homepage": "https://anastasiaa1890.github.io/react-mesto-auth/",
   "name": "react-mesto-auth",
   "version": "0.1.0",
   "private": true,
@@ -18,7 +17,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "predeploy": "npm run build",
+    "predeploy": "npm run build && scp -r ./build/* praktikum@51.250.29.191:/home/praktikum/mesto-frontend" ,
     "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
