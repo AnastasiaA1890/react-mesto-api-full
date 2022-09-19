@@ -100,9 +100,8 @@ class Api {
 }
 
 export const api = new Api({
-  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-39',
+  baseUrl: 'https://api.anastasia.mesto.nomoredomains.sbs/',
   headers: {
-    authorization: '1dbb1df0-e71b-4917-a03e-8221c4080837',
     'Content-Type': 'application/json'
   }
 });
