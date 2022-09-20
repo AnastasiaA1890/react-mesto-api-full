@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../images/logo-light.svg";
+import logo from "../images/logo-light.png";
 import {Link, Route} from "react-router-dom";
 import {useState} from "react";
 
