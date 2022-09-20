@@ -12,31 +12,30 @@ class Api {
     }
   }
 
-  getInitialCards() {
-    return fetch(`${this._baseUrl}/cards`, {headers: this._headers})
+  getInitialCards(jwt) {
+    return fetch(`${this._baseUrl}/cards`, {
+      headers: {
+        'Authorization': `Bearer ${jwt}`,
+        'Content-Type': 'application/json',
+      },
+    })
       .then(this._checkResponse)
+      .catch((err) => {
+        console.log(err)
+      })
   }
 
-  addCard({name, link, owner: _id}) {
+  addCard({name, link, owner: _id}, jwt) {
     return fetch(`${this._baseUrl}/cards`, {
       method: 'POST',
-      headers: this._headers,
+      headers: {
+        'Authorization': `Bearer ${jwt}`,
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify({
         name,
         link,
         owner: _id
-      })
-    })
-      .then(this._checkResponse)
-  }
-
-  editProfile({name, about}) {
-    return fetch(`${this._baseUrl}/users/me`, {
-      method: 'PATCH',
-      headers: this._headers,
-      body: JSON.stringify({
-        name,
-        about
       })
     })
       .then(this._checkResponse)
@@ -45,10 +44,31 @@ class Api {
       })
   }
 
-  editAvatar(avatar) {
+  editProfile(value, jwt) {
+    return fetch(`${this._baseUrl}/users/me`, {
+      method: 'PATCH',
+      headers: {
+        'Authorization': `Bearer ${jwt}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: value.name,
+        about: value.about
+      })
+    })
+      .then(this._checkResponse)
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
+  editAvatar(avatar, jwt) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: 'PATCH',
-      headers: this._headers,
+      headers: {
+        'Authorization': `Bearer ${jwt}`,
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify({
         avatar
       })
@@ -59,43 +79,59 @@ class Api {
       })
   }
 
-  getUserData() {
+  getUserData(jwt) {
     return fetch(`${this._baseUrl}/users/me`, {
-      headers: this._headers,
+      headers: {
+        'Authorization': `Bearer ${jwt}`,
+        'Content-Type': 'application/json',
+      },
     })
       .then(this._checkResponse)
+      .catch((err) => {
+        console.log(err)
+      })
   }
 
-  deleteCard(id) {
+  deleteCard(id, jwt) {
     return fetch(`${this._baseUrl}/cards/${id}`, {
       method: 'DELETE',
-      headers: this._headers,
+      headers: {
+        'Authorization': `Bearer ${jwt}`,
+        'Content-Type': 'application/json',
+      },
     })
       .then(this._checkResponse)
+      .catch((err) => {
+        console.log(err)
+      })
   }
 
-  deleteLike(id) {
+  deleteLike(id, jwt) {
     return fetch(`${this._baseUrl}/cards/${id}/likes`, {
       method: 'DELETE',
-      headers: this._headers,
+      headers: {
+        'Authorization': `Bearer ${jwt}`,
+        'Content-Type': 'application/json',
+      },
     })
       .then(this._checkResponse)
+      .catch((err) => {
+        console.log(err)
+      })
   }
 
-  addLike(id) {
+  addLike(id, jwt) {
     return fetch(`${this._baseUrl}/cards/${id}/likes`, {
       method: 'PUT',
-      headers: this._headers,
+      headers: {
+        'Authorization': `Bearer ${jwt}`,
+        'Content-Type': 'application/json',
+      },
     })
       .then(this._checkResponse)
-  }
-
-  changeLikeCardStatus(id, isLiked) {
-    if(isLiked){
-      return this.addLike(id)
-    } else {
-      return this.deleteLike(id)
-    }
+      .catch((err) => {
+        console.log(err)
+      })
   }
 }
 

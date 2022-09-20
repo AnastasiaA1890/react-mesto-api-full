@@ -30,9 +30,10 @@ function App() {
   const [isInfoToolTipPopup, setInfoToolTipPopup] = useState(false);
   const history = useHistory();
 
+
   React.useEffect(() => {
     api
-      .getUserData()
+      .getUserData(localStorage.getItem('jwt'))
       .then((res) => {
         setCurrentUser(res);
       })
@@ -43,7 +44,7 @@ function App() {
 
   React.useEffect(() => {
     api
-      .getInitialCards()
+      .getInitialCards(localStorage.getItem('jwt'))
       .then((res) => {
         setNewCards(res);
       })
@@ -70,7 +71,7 @@ function App() {
 
   const handleAddPlaceSubmit = (card) => {
     api
-      .addCard(card)
+      .addCard(card, localStorage.getItem('jwt'))
       .then((newCard) => {
         setNewCards([newCard, ...cards]);
         closeAllPopups();
@@ -81,21 +82,26 @@ function App() {
   };
 
   const handleCardLike = (card) => {
-    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+    const isLiked = card.likes.some((i) => i === currentUser._id);
     // Отправляем запрос в API и получаем обновлённые данные карточки
-    api
-      .changeLikeCardStatus(card._id, !isLiked)
-      .then((newCard) => {
-        setNewCards((cards) => cards.map((c) => (c._id === card._id ? newCard : c)));
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    const cardCallback = (newCard) => {
+      const newCards = cards.map((c) => (c._id === card._id ? newCard : c));
+      setNewCards(newCards);
+    };
+    if (!isLiked) {
+      api.addLike(card._id, localStorage.getItem('jwt'))
+        .then(cardCallback)
+        .catch(err => console.log(err))
+    } else {
+      api.deleteLike(card._id, localStorage.getItem('jwt'))
+        .then(cardCallback)
+        .catch(err => console.log(err))
+    }
   };
 
   const handleCardDelete = (card) => {
     api
-      .deleteCard(card._id)
+      .deleteCard(card._id, localStorage.getItem('jwt'))
       .then(() => {
         setNewCards((cards) => cards.filter((c) => c._id !== card._id));
       })
@@ -114,7 +120,7 @@ function App() {
 
   const handleUpdateUser = (data) => {
     api
-      .editProfile(data)
+      .editProfile(data, localStorage.getItem('jwt'))
       .then((res) => {
         setCurrentUser(res);
         closeAllPopups();
@@ -126,7 +132,7 @@ function App() {
 
   function handleUpdateAvatar({ avatar }) {
     api
-      .editAvatar(avatar)
+      .editAvatar(avatar, localStorage.getItem('jwt'))
       .then((res) => {
         setCurrentUser(res);
         closeAllPopups();
@@ -144,7 +150,7 @@ function App() {
         .then((res) => {
           if (res) {
             setLoggedIn(true);
-            setEmail(res.data.email);
+            setEmail(res.email);
           }
         })
         .catch((err) => {

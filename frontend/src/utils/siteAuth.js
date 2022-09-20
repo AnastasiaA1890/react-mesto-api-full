@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://auth.nomoreparties.co';
+export const BASE_URL = 'https://api.anastasia.mesto.nomoredomains.sbs';
 
 export const signUp = ({password, email}) => {
   return fetch(`${BASE_URL}/signup`, {

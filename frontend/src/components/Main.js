@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import Card from "./Card";
 import {CurrentUserContext} from "../contexts/CurrentUserContext";
 
@@ -26,12 +26,12 @@ function Main(props) {
       {/*Elements section*/}
       <section className="elements">
         {
-          props.cards.map((card) => (
+          props.cards.map((card, index) => (
             <Card
               onCardLike={props.onCardLike}
               onCardDelete={props.onCardDelete}
               card={card}
-              key={card._id}
+              key={index}
               onCardClick={props.onCardClick}/>
           ))
         }
