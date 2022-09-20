@@ -130,10 +130,11 @@ function App() {
       });
   };
 
-  function handleUpdateAvatar({ avatar }) {
+  function handleUpdateAvatar(data) {
     api
-      .editAvatar(avatar, localStorage.getItem('jwt'))
+      .editAvatar(data, localStorage.getItem('jwt'))
       .then((res) => {
+        console.log(res)
         setCurrentUser(res);
         closeAllPopups();
       })

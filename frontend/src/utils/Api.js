@@ -66,11 +66,12 @@ class Api {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: 'PATCH',
       headers: {
+        'Accept': 'application/json',
         'Authorization': `Bearer ${jwt}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        avatar
+        avatar: avatar
       })
     })
       .then(this._checkResponse)

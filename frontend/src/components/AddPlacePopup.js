@@ -31,18 +31,18 @@ function AddPlacePopup(props) {
       onSubmit={handleSubmit}
       isOpen={props.isOpen}
       onClose={props.onClose}
-      title="Новое место"
+      title="New place"
       name="add-card"
-      button="Сохранить"
+      button="Save"
       children={(
         <>
           <label className="popup__field">
-            <input value={name} onChange={handleChangeName} type="text" placeholder="Название" name="name" className="popup__input popup__input_title"
+            <input value={name} onChange={handleChangeName} type="text" placeholder="Name" name="name" className="popup__input popup__input_title"
                    id="card-input" minLength="2" maxLength="30" required/>
             <span className="popup__error-visible card-input-error"/>
           </label>
           <label className="popup__field">
-            <input value={link} onChange={handleChangeLink} type="url" placeholder="Ссылка на картинку" name="link"
+            <input value={link} onChange={handleChangeLink} type="url" placeholder="Link on a pic" name="link"
                    className="popup__input popup__input_src"
                    id="link-input" required/>
             <span className="popup__error-visible link-input-error"/>
