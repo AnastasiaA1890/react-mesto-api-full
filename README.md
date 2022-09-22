@@ -5,6 +5,8 @@
 
 [The link](https://anastasia.mesto.nomoredomains.sbs/)
 
-Public url is 51.250.29.191
+IP 51.250.29.191
+Frontend https://anastasia.mesto.nomoredomains.sbs/
+Backend https://api.anastasia.mesto.nomoredomains.sbs/
 
 </p>
