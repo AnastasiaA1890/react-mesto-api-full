@@ -30,17 +30,37 @@ function App() {
   const [isInfoToolTipPopup, setInfoToolTipPopup] = useState(false);
   const history = useHistory();
 
+  function handleToken() {
+    const jwt = localStorage.getItem("jwt");
+    if (jwt) {
+      siteAuth
+        .checkToken(jwt)
+        .then((res) => {
+          if (res) {
+            setLoggedIn(true);
+            setEmail(res.email);
+            history.push('/');
+          }
+        })
+    }
+  }
+  React.useEffect(() => {
+    handleToken();
+  }, []);
 
   React.useEffect(() => {
+    if (!loggedIn) {
+      return
+    }
     api
       .getUserData(localStorage.getItem('jwt'))
-      .then((res) => {
-        setCurrentUser(res);
+        .then((res) => {
+          setCurrentUser(res);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [loggedIn]);
 
   React.useEffect(() => {
     api
@@ -143,41 +163,26 @@ function App() {
       });
   }
 
-  function handleToken() {
-    const jwt = localStorage.getItem("jwt");
-    if (jwt) {
-      siteAuth
-        .checkToken(jwt)
-        .then((res) => {
-          if (res) {
-            setLoggedIn(true);
-            setEmail(res.email);
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  }
-
-  React.useEffect(() => {
-    handleToken();
-  }, []);
-
-  React.useEffect(() => {
+ /*  React.useEffect(() => {
     if (loggedIn) {
       history.push("/");
     }
-  }, [loggedIn]);
+  }, [loggedIn]); */
+  function onLogin(params) {
+    setIsSuccessful(true);
+  }
 
   const handleLogin = ({ password, email }) => {
     siteAuth
       .signIn({ password, email })
       .then((res) => {
-        localStorage.setItem("jwt", res.token);
-        handleToken();
-        setEmail(email);
-        setIsSuccessful(true);
+        if (res.token){
+          localStorage.setItem("jwt", res.token);
+          handleToken();
+          onLogin();
+          setEmail(email);
+          history.push('/')
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -192,7 +197,7 @@ function App() {
       .then((res) => {
         setIsSuccessful(true);
         setInfoToolTipPopup(true);
-        history.push("sign-in");
+        history.push("/sign-in");
       })
       .catch((err) => {
         console.log(err);
