@@ -63,6 +63,9 @@ function App() {
   }, [loggedIn]);
 
   React.useEffect(() => {
+    if (!loggedIn) {
+      return
+    }
     api
       .getInitialCards(localStorage.getItem('jwt'))
       .then((res) => {
@@ -71,7 +74,7 @@ function App() {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [loggedIn]);
 
   const handleEditAvatarClick = () => {
     setAvatarModalIsOpen(true);
