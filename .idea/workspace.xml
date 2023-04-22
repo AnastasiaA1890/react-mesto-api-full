@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3bb228ab-0f74-4c24-bbbc-6899e2a0da6f" name="Changes" comment="feat: added some changes with PW">
-      <change beforePath="$PROJECT_DIR$/backend/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/App.js" afterDir="false" />
+    <list default="true" id="3bb228ab-0f74-4c24-bbbc-6899e2a0da6f" name="Changes" comment="feat: added PW tests">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -202,8 +201,16 @@
       <workItem from="1682138858106" duration="84000" />
       <workItem from="1682138947076" duration="3291000" />
       <workItem from="1682143512843" duration="267000" />
-      <workItem from="1682182932433" duration="5136000" />
+      <workItem from="1682182932433" duration="5469000" />
     </task>
+    <task id="LOCAL-00001" summary="feat: added PW tests">
+      <created>1682189016471</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1682189016471</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -219,6 +226,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="feat: added PW tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: added PW tests" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
