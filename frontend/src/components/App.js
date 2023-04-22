@@ -46,7 +46,7 @@ function App() {
   }
   React.useEffect(() => {
     handleToken();
-  }, []);
+  });
 
   React.useEffect(() => {
     if (!loggedIn) {
