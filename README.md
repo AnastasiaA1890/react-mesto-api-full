@@ -8,5 +8,6 @@
 <p>IP 51.250.29.191</p>
 <p>Frontend https://anastasia.mesto.nomoredomains.sbs/</p>
 <p>Backend https://api.anastasia.mesto.nomoredomains.sbs/</p>
+<p>Developed Playwright Tests with using Page Objects </p>
 
 </p>
